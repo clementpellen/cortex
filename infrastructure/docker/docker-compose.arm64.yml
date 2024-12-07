@@ -1,0 +1,85 @@
+version: "3"
+
+services:
+  nextcloud:
+    image: arm64v8/nextcloud
+    container_name: nextcloud
+    restart: unless-stopped
+    networks:
+      - cloud
+    depends_on:
+      - nextclouddb
+      - redis
+    ports:
+      - 8081:80
+    volumes:
+      - nextcloud_html:/var/www/html
+      - nextcloud_custom_apps:/var/www/html/custom_apps
+      - nextcloud_config:/var/www/html/config
+      - nextcloud_data:/var/www/html/data
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Los_Angeles
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextcloud
+      - MYSQL_PASSWORD=dbpassword
+      - MYSQL_HOST=nextclouddb
+      - REDIS_HOST=redis
+
+  nextclouddb:
+    image: arm64v8/mariadb
+    container_name: nextcloud-db
+    restart: unless-stopped
+    command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
+    networks:
+      - cloud
+    volumes:
+      - nextclouddb:/var/lib/mysql
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Los_Angeles
+      - MYSQL_RANDOM_ROOT_PASSWORD=true
+      - MYSQL_PASSWORD=dbpassword
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextcloud
+
+  redis:
+    image: redis:alpine
+    container_name: redis
+    volumes:
+      - redis_data:/data
+    networks:
+      - cloud
+
+  nginx-proxy:
+    image: "jc21/nginx-proxy-manager:latest"
+    container_name: nginx-proxy
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Los_Angeles
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "81:81"
+      - "443:443"
+    volumes:
+      - nginx_data:/data
+      - nginx_letsencrypt:/etc/letsencrypt
+
+networks:
+  cloud:
+    name: cloud
+    driver: bridge
+
+volumes:
+  nextcloud_html:
+  nextcloud_custom_apps:
+  nextcloud_config:
+  nextcloud_data:
+  nextclouddb:
+  redis_data:
+  nginx_data:
+  nginx_letsencrypt:

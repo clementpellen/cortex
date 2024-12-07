@@ -163,5 +163,7 @@ cython_debug/
 
 # Terraform 
 models
-
 infrastructure/.terraform*
+
+# NextCloud
+nextcloud/output-arm-image

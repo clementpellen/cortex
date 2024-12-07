@@ -1,0 +1,14 @@
+[Unit]
+Description=Démarrer les conteneurs Docker via docker-compose
+Requires=docker-plugins.service
+After=docker-plugins.service
+
+[Service]
+Type=oneshot
+WorkingDirectory=/opt/docker
+ExecStart=/usr/bin/docker-compose -f /opt/docker/docker-compose.yml up -d
+ExecStop=/usr/bin/docker-compose -f /opt/docker/docker-compose.yml down
+RemainAfterExit=true
+
+[Install]
+WantedBy=multi-user.target

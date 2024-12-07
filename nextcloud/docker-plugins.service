@@ -1,0 +1,13 @@
+[Unit]
+Description=Installation automatique des plugins Docker
+Requires=docker.service
+After=network-online.target docker.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/install_docker_plugins.sh
+RemainAfterExit=true
+TimeoutStartSec=300
+
+[Install]
+WantedBy=multi-user.target

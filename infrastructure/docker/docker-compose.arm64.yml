@@ -28,7 +28,7 @@ services:
       - REDIS_HOST=redis
 
   nextclouddb:
-    image: arm64v8/mariadb
+    image: arm64v8/mariadb:lts
     container_name: nextcloud-db
     restart: unless-stopped
     command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW

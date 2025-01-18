@@ -132,7 +132,7 @@ L'architecture, quand à elle, doit absolument définir la zone d'intéraction d
     on documente et on repart dans une phase de spécification et d'architecture.
   - Si une tâche est terminée avant la timebox, en général c'est que tout se passe comme prévu
     (Y a quand même quelques fois où ça se passe bien 😉)
-  - Si une hypothèse supposé bloquante est trouvé il faut poser la problématique et puis la valider ou l'infirmer méthodiquement !
+  - Si une hypothèse supposée bloquante est trouvée il faut poser la problématique et puis la valider ou l'infirmer méthodiquement !
 
 De cette façon, on devrait pouvoir réaliser 2 **backlog lifecycle** chacun par week-end geek !
 Et terminer un week-end avec un projet terminé, documenté et prêt à être incrémenté lors du prochain

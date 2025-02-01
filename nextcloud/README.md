@@ -24,8 +24,12 @@ pour installer les packages nécessaires :
 
 Le développement et le build du projet se font 
 sur un environnement **WSL (Windows Subsystem for Linux)**
-avec `Ubuntu 20.04 LTS`. L'OS repose sur un CPU 
+avec `Ubuntu 24.04 LTS`. L'OS repose sur un CPU 
 avec architecture AMD64.
+
+> /!\ /!\ /!\ **CHANGEMENT** :
+> Ubuntu **24.04 LTS** est nécessaire pour
+la partie *Installation de Ansible sur WSL*.
 
 ## Prérequis
 
@@ -132,6 +136,50 @@ dans le répertoire `/etc/systemd/system/`
 sudo packer build packer_raspberry_pi_os_lite.json
 ```
 
+
+## Installation de Ansible sur WSL
+
+**J'installe Ansible avec Python 3.12.3
+sur WSL Ubuntu 24.04 LTS**
+
+> /!\ /!\ /!\ J'ai dû monter Ubuntu en version **24.04** LTS
+> pour disposer de Python 3.12.3 et Ansible version 11 (la version actuelle)
+
+<br>
+
+1. Créer un environnement virtuel Python pour 
+le projet NextCloud :
+
+```bash
+python -m venv <PATH_DU_PROJET_NEXTCLOUD>/.venv
+```
+
+> Cette commande n'est nécessaire qu'une seule fois
+> pour créer l'environnement virtuel.
+
+
+2. Activer l'environnement virtuel
+
+```bash
+source <PATH_DU_PROJET_NEXTCLOUD>/.venv/bin/activate
+```
+
+3. Mettre `pip` à jour et disposer des *pip-tools* :
+
+```bash
+pip install --upgrade pip
+pip install pip-tools
+```
+
+Parmi les *pip-tools*, on utilise `pip-compile` pour définir
+les dépendances du projet NextCloud dans le fichier `requirements.txt`
+
+4. Mettre à jour les dépendances du projet NextCloud :
+
+```bash
+pip-compile requirements.in
+pip install -r requirements.txt
+```
 
 ## Déploiement de NextCloud
 

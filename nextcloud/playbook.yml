@@ -1,0 +1,5 @@
+---
+- hosts: raspberry_cluster
+  become: yes    # Pour exécuter les tâches en sudo
+  roles:
+    - vpn

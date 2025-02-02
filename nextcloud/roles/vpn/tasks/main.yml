@@ -1,0 +1,7 @@
+- name: Display content of /usr folder
+  shell: ls -la /usr
+  register: ls_output
+
+- name: Display content of /usr folder
+  debug:
+    var: ls_output.stdout_lines

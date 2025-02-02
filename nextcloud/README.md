@@ -136,8 +136,11 @@ dans le répertoire `/etc/systemd/system/`
 sudo packer build packer_raspberry_pi_os_lite.json
 ```
 
+<br>
 
-## Installation de Ansible sur WSL
+## Déploiement de l'infra avec Ansible
+
+### Installation de Ansible sur WSL
 
 **J'installe Ansible avec Python 3.12.3
 sur WSL Ubuntu 24.04 LTS**
@@ -179,6 +182,31 @@ les dépendances du projet NextCloud dans le fichier `requirements.txt`
 ```bash
 pip-compile requirements.in
 pip install -r requirements.txt
+```
+
+### Déploiement Ansible
+
+Certains packages apt sont nécessaires au déploiement
+Ansible :
+
+- `sshpass`
+
+```bash
+sudo apt install sshpass
+```
+
+Pour appliquer l'infrastructure nécessaire au fonctionnement 
+du NextCloud, le playbook principal `playbook.yml`
+applique les rôles suivants :
+
+- `vpn` : déploie les configurations nécessaires 
+pour que le Raspberry se connecte au réseau privé
+
+**Voici comment exécuter le playbook 
+à partir du dossier NextCloud :**
+
+```bash
+ansible-playbook playbook.yml -u cleme --ask-pass
 ```
 
 ## Déploiement de NextCloud

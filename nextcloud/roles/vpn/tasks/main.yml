@@ -1,7 +1,23 @@
-- name: Display content of /usr folder
-  shell: ls -la /usr
-  register: ls_output
+---
+- name: Install Tailscale last version
+  ansible.builtin.shell: curl -fsSL https://tailscale.com/install.sh | sh
+  args:
+    creates: /usr/sbin/tailscale
+  register: tailscale_install
+  changed_when: "'Installing' in tailscale_install.stdout or tailscale_install.rc == 0"
 
-- name: Display content of /usr folder
-  debug:
-    var: ls_output.stdout_lines
+- name: Check Tailscale status
+  ansible.builtin.shell: tailscale status
+  register: tailscale_status
+  changed_when: false
+  failed_when: false
+
+- name: Tailscale is already up
+  ansible.builtin.debug:
+    msg: "Tailscale is already running and logged in: {{ tailscale_status.stdout | trim }}"
+  when: "'Logged in as' in tailscale_status.stdout or tailscale_status.rc == 0"
+
+- name: Tailscale is not running
+  ansible.builtin.debug:
+    msg: "Tailscale is not running, please login with 'sudo tailscale up' and follow Login Procedure"
+  when: "'Logged out' in tailscale_status.stdout or tailscale_status.rc == 1"

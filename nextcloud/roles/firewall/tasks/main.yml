@@ -1,0 +1,33 @@
+---
+- name: Installer ufw
+  apt:
+    name: ufw
+    state: present
+    update_cache: true
+
+- name: Autoriser SSH pour le réseau privé
+  community.general.ufw:
+    rule: allow
+    proto: tcp
+    from: 192.168.0.0/16
+    to: any
+    port: 22
+
+- name: Autoriser le port 8081 pour l'interface tailscale0
+  community.general.ufw:
+    rule: allow
+    proto: tcp
+    interface: tailscale0
+    direction: in
+    to_port: 8081
+
+- name: Bloquer tout le reste
+  community.general.ufw:
+    rule: deny
+    proto: any
+
+- name: Activer UFW
+  community.general.ufw:
+    state: enabled
+    policy: deny
+    

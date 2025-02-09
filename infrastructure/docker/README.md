@@ -6,6 +6,15 @@ L'infrastructure Docker du projet Nextcloud est adaptable. Les conteneurs Docker
 
 ## Build
 
+### Construire l'image sur WSL
+
+**Prérequis** : S'assurer que `docker` et `docker-compose` sont bien installés et à jour. 
+
+Sinon mettre à jour :
+```shell
+sudo apt update
+curl -fsSL https://get.docker.com -o /tmp/get-docker.sh
+sudo apt install docker-compose
 Le projet peut etre build avec la commande suivante :
 
 ```shell

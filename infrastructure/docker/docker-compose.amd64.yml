@@ -20,7 +20,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=America/Los_Angeles
+      - TZ=Europe/Paris
       - MYSQL_DATABASE=nextcloud
       - MYSQL_USER=nextcloud
       - MYSQL_PASSWORD=dbpassword
@@ -39,7 +39,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=America/Los_Angeles
+      - TZ=Europe/Paris
       - MYSQL_RANDOM_ROOT_PASSWORD=true
       - MYSQL_PASSWORD=dbpassword
       - MYSQL_DATABASE=nextcloud
@@ -59,7 +59,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=America/Los_Angeles
+      - TZ=Europe/Paris
     restart: unless-stopped
     ports:
       - "80:80"

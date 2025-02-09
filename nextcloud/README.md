@@ -211,7 +211,8 @@ ansible-playbook playbook.yml -u cleme --ask-pass
 
 ## Déploiement de NextCloud
 
-Partie de Quentin 😊
+Cette partie se trouve pour le moment
+dans le répertoire `infrastrucure/docker`
 
 
 ## Notes

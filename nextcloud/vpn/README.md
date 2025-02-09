@@ -49,4 +49,21 @@ Je sais pas exactement comment on gère ça :
 
 ![alt text](img/image.png)
 
+2. Installation sur Raspberry Pi
 
+2 étapes pour installer Tailscale sur un Raspberry Pi :
+
+- Jour le rôle Ansible `vpn` du projet NextCloud
+
+```bash
+cd nextcloud
+source .venv/bin/activate
+ansible-playbook playbook.yml -u <USER> --ask-pass
+```
+
+- Si nécessaire, connecter le Rapsberry au réseau VPN
+
+```bash
+ssh <USER>@<IP_RASPBERRY>
+sudo tailscale up
+```

@@ -1,5 +1,9 @@
 # Docker compose pour Nextcloud
 
+Le projet Nextcloud est montée sur une infrastructure en conteneurs orchestrée par un fichier `docker-compose`.
+
+L'infrastructure Docker du projet Nextcloud est adaptable. Les conteneurs Docker peuvent être montés sur l'environnement Windows WSL 24.04 ou sur un Raspberry Pi 5 Debian 12.
+
 ## Build
 
 Le projet peut etre build avec la commande suivante :

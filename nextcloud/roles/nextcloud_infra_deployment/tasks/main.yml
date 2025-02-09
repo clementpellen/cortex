@@ -1,0 +1,19 @@
+- name: Install Docker
+  apt:
+    name: docker.io
+    state: present
+    update_cache: yes
+
+- name: Install Docker Compose
+  apt:
+    name: docker-compose
+    state: present
+    update_cache: yes
+
+- name: Copy the docker folder from infrastructure
+  copy:
+    src: ../../../infrastructure/docker/
+    dest: /opt/nextcloud/docker/
+    owner: cleme
+    group: cleme
+    mode: '0755'

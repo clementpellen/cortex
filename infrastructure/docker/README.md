@@ -43,6 +43,15 @@ make ps
 make clean
 ```
 
+### Construire l'image sur Raspberry PI
+
+TODO: Gérer les sudoers pour ne plus avoir à faire du sudo
+
+```shell
+cd /opt/nextcloud/docker
+sudo make up
+```
+
 ### ARM64 vs AMD64
 
 Deux fichiers `docker-compose` existent, l'un pour **ARM64** et l'autre pour **AMD64**.

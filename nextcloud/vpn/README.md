@@ -67,3 +67,8 @@ ansible-playbook playbook.yml -u <USER> --ask-pass
 ssh <USER>@<IP_RASPBERRY>
 sudo tailscale up
 ```
+
+3. Installation sur iOS
+
+Télécharger l'application `Tailscale` sur l'App Store
+et suivre les instructions similaires à celles de Windows

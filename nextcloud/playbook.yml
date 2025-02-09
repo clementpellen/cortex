@@ -3,4 +3,5 @@
   become: yes    # Pour exécuter les tâches en sudo
   roles:
     - firewall
-    # - vpn
+    - vpn
+    - nextcloud_infra_deployment

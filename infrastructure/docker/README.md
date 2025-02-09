@@ -8,9 +8,12 @@ L'infrastructure Docker du projet Nextcloud est adaptable. Les conteneurs Docker
 
 ### Construire l'image sur WSL
 
-**Prérequis** : S'assurer que `docker` et `docker-compose` sont bien installés et à jour. 
+Afin de pouvoir accéder à Nextcloud sur le port `8081` il faut monter les services grace à `docker-compose`.
+
+**Prérequis** : S'assurer que `docker` et `docker-compose` sont bien installés et à jour.
 
 Sinon mettre à jour :
+
 ```shell
 sudo apt update
 curl -fsSL https://get.docker.com -o /tmp/get-docker.sh
@@ -49,6 +52,7 @@ Deux fichiers `docker-compose` existent, l'un pour **ARM64** et l'autre pour **A
 Ainsi en fonction de l'architecture hote on peut alterner et faire varier les images `mariadb` et `nextcloud`.
 
 Le projet peut être exécuté avec la commande `make up` de façon identique :
+
 - Localement sur un PC Windows AMD64 en phase de dev
 - Sur le Rapsberry PI ARM64 pour la prod
 

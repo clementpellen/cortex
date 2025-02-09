@@ -39,6 +39,10 @@ make clean
 Deux fichiers `docker-compose` existent, l'un pour **ARM64** et l'autre pour **AMD64**.
 Ainsi en fonction de l'architecture hote on peut alterner et faire varier les images `mariadb` et `nextcloud`.
 
+Le projet peut être exécuté avec la commande `make up` de façon identique :
+- Localement sur un PC Windows AMD64 en phase de dev
+- Sur le Rapsberry PI ARM64 pour la prod
+
 ## Architecture
 
 Ce dossier contient les fichiers pour construire les services suivants :
